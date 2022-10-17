@@ -17,6 +17,15 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function repeater(str, options) {
   
+  if (!'repeatTimes' in options) options.repeatTimes = 1;
+  if (!'separator' in options) options.separator = '+';
+  if (!'addition' in options) options.addition = '';
+  if (!'additionRepeatTimes' in options) options.additionRepeatTimes = 1;
+  if (!'additionSeparator' in options) options.additionSeparator = '|';
+
+  let result = ((str + (options.addition + options.additionSeparator).repeat(options.additionRepeatTimes-1) + options.addition + options.separator)).repeat(options.repeatTimes-1) + str + (options.addition + options.additionSeparator).repeat(options.additionRepeatTimes-1) + options.addition;
+  return result;
+
 }
 
 module.exports = {
